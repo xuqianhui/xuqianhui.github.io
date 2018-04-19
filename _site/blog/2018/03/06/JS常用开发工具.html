@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="My blog">
+  <meta name="author" content="徐千惠">
+  <meta name="keywords" content="JS常用开发工具, Talk is cheap, JS常用开发工具 - Talk is cheap">
+  <title>JS常用开发工具 - Talk is cheap</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="xuqianhui.github.io/blog/2018/03/06/JS%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/rouge.css">
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?253bf28794299acddc0923d3b13bc583";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">JS常用开发工具</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2018-03-06 转载请注明出处：<a href = "http://xuqianhui.github.io/">http://xuqianhui.github.io/</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: xuqianhui
+版本: V 0.0.1
+日期: 2018年03月06日
+</code></pre>
+</div>
+
+<!-- more -->
+<ul id="markdown-toc">
+  <li><a href="#包管理工具npm" id="markdown-toc-包管理工具npm">包管理工具npm</a></li>
+  <li><a href="#构建工具gulp" id="markdown-toc-构建工具gulp">构建工具Gulp</a></li>
+  <li><a href="#转换器babel" id="markdown-toc-转换器babel">转换器Babel</a>    <ul>
+      <li><a href="#使用gulp运行babel" id="markdown-toc-使用gulp运行babel">使用Gulp运行Babel</a></li>
+    </ul>
+  </li>
+  <li><a href="#格式审查工具eslint" id="markdown-toc-格式审查工具eslint">格式审查工具ESLint</a></li>
+</ul>
+<p>编写代码只需要一个编辑器和浏览器，但是一些实用的工具可以帮助我们简化工作流程，不仅使工作变得简单易于管理，而且方便项目的构建，模块化开发，规范代码。随着ES6的势在必行，将ES6代码转换成常用的ES5也是十分必须的。以下是我在目前的开发中用到的工具的介绍以及使用方法。</p>
+<h2 id="包管理工具npm">包管理工具npm</h2>
+<p>npm作为项目的包管理工具，不管是Node开发还是基于浏览器的开发，npm都会让开发工作变得更简单。npm可以用来管理安装功能模块，或者库等等。安装的模块都会放在项目根目录的<code class="highlighter-rouge">node_modules</code>里。这些已经安装的模块就是项目的依赖。npm通过一个名为<code class="highlighter-rouge">package.json</code>文件来管理当前项目的依赖信息。这个文件不不要自己创建：命令行里运行<code class="highlighter-rouge">npm init</code>然后回答关于配置相关的问题，之后可以随时修改文件的内容
+依赖分为常规依赖和开发依赖。开发依赖是指只在项目构建时需要的依赖，应用程序运行时不需要。每安装一个本地依赖都需要在命令行后面添加<code class="highlighter-rouge">--save或者--saveDev</code>否则这些包虽然会被安装但是不会出现在<code class="highlighter-rouge">package.json</code>文件里。依赖管理是因为那些被列在<code class="highlighter-rouge">package.json</code>文件里的特定版本的依赖包需要被快速重建（下载和安装）如果删除<code class="highlighter-rouge">node_modules</code>目录，运行<code class="highlighter-rouge">npm install</code>就会下载<code class="highlighter-rouge">package.json</code>里列出的包</p>
+<h2 id="构建工具gulp">构建工具Gulp</h2>
+<p>构建工具可以在开发过程中自动化地运行一些重复的任务。使用以下命令全局安装Gulp：<code class="highlighter-rouge">npm install -g gulp</code>
+对于一个操作系统只需要全局的安装一次即可，但是每个项目都需要本地的Gulp，而且避免版本问题在项目的根目录下运行<code class="highlighter-rouge">npm install --save-dev gulp</code>
+安装好之后创建一个Gulpfile(gulpfile.js):</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">const</span> <span class="n">gulp</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">)</span>
+<span class="sr">//</span><span class="no">Gulp</span> <span class="n">dependencies</span> <span class="n">go</span> <span class="n">here</span>
+<span class="n">gulptask</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span><span class="n">function</span><span class="p">(){</span>
+  <span class="sr">//</span><span class="no">Gulp</span> <span class="n">tasks</span> <span class="n">go</span> <span class="n">here</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>目前还没有配置任何任务不过可以验证gulp是否能够正常运行，直接输入命令<code class="highlighter-rouge">gulp</code></p>
+<h2 id="转换器babel">转换器Babel</h2>
+<h3 id="使用gulp运行babel">使用Gulp运行Babel</h3>
+<h2 id="格式审查工具eslint">格式审查工具ESLint</h2>
+
+    </div>
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+var cloudTieConfig = {
+  url: document.location.href, 
+  sourceId: "",
+  productKey: "997752e1c04e423cb7427a28b0d9a10a",
+  target: "cloud-tie-wrapper"
+};
+var yunManualLoad = true;
+Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

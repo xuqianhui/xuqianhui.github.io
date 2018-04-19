@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RSS - Talk is cheap</title>
+    <description>Talk is cheap - Show me the code</description>
+    <link>xuqianhui.github.io</link>
+    <atom:link href="xuqianhui.github.io/page/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 19 Apr 2018 10:45:49 +0800</pubDate>
+    <lastBuildDate>Thu, 19 Apr 2018 10:45:49 +0800</lastBuildDate>
+    <generator>徐千惠</generator>
+    
+      <item>
+        <title>JS常用开发工具</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: xuqianhui
+版本: V 0.0.1
+日期: 2018年03月06日
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;!-- more --&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#包管理工具npm&quot; id=&quot;markdown-toc-包管理工具npm&quot;&gt;包管理工具npm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#构建工具gulp&quot; id=&quot;markdown-toc-构建工具gulp&quot;&gt;构建工具Gulp&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#转换器babel&quot; id=&quot;markdown-toc-转换器babel&quot;&gt;转换器Babel&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#使用gulp运行babel&quot; id=&quot;markdown-toc-使用gulp运行babel&quot;&gt;使用Gulp运行Babel&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#格式审查工具eslint&quot; id=&quot;markdown-toc-格式审查工具eslint&quot;&gt;格式审查工具ESLint&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;编写代码只需要一个编辑器和浏览器，但是一些实用的工具可以帮助我们简化工作流程，不仅使工作变得简单易于管理，而且方便项目的构建，模块化开发，规范代码。随着ES6的势在必行，将ES6代码转换成常用的ES5也是十分必须的。以下是我在目前的开发中用到的工具的介绍以及使用方法。&lt;/p&gt;
+&lt;h2 id=&quot;包管理工具npm&quot;&gt;包管理工具npm&lt;/h2&gt;
+&lt;p&gt;npm作为项目的包管理工具，不管是Node开发还是基于浏览器的开发，npm都会让开发工作变得更简单。npm可以用来管理安装功能模块，或者库等等。安装的模块都会放在项目根目录的&lt;code class=&quot;highlighter-rouge&quot;&gt;node_modules&lt;/code&gt;里。这些已经安装的模块就是项目的依赖。npm通过一个名为&lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;文件来管理当前项目的依赖信息。这个文件不不要自己创建：命令行里运行&lt;code class=&quot;highlighter-rouge&quot;&gt;npm init&lt;/code&gt;然后回答关于配置相关的问题，之后可以随时修改文件的内容
+依赖分为常规依赖和开发依赖。开发依赖是指只在项目构建时需要的依赖，应用程序运行时不需要。每安装一个本地依赖都需要在命令行后面添加&lt;code class=&quot;highlighter-rouge&quot;&gt;--save或者--saveDev&lt;/code&gt;否则这些包虽然会被安装但是不会出现在&lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;文件里。依赖管理是因为那些被列在&lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;文件里的特定版本的依赖包需要被快速重建（下载和安装）如果删除&lt;code class=&quot;highlighter-rouge&quot;&gt;node_modules&lt;/code&gt;目录，运行&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;就会下载&lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;里列出的包&lt;/p&gt;
+&lt;h2 id=&quot;构建工具gulp&quot;&gt;构建工具Gulp&lt;/h2&gt;
+&lt;p&gt;构建工具可以在开发过程中自动化地运行一些重复的任务。使用以下命令全局安装Gulp：&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install -g gulp&lt;/code&gt;
+对于一个操作系统只需要全局的安装一次即可，但是每个项目都需要本地的Gulp，而且避免版本问题在项目的根目录下运行&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install --save-dev gulp&lt;/code&gt;
+安装好之后创建一个Gulpfile(gulpfile.js):&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gulp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'gulp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Gulp&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;here&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gulptask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'default'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Gulp&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tasks&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;here&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;目前还没有配置任何任务不过可以验证gulp是否能够正常运行，直接输入命令&lt;code class=&quot;highlighter-rouge&quot;&gt;gulp&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;转换器babel&quot;&gt;转换器Babel&lt;/h2&gt;
+&lt;h3 id=&quot;使用gulp运行babel&quot;&gt;使用Gulp运行Babel&lt;/h3&gt;
+&lt;h2 id=&quot;格式审查工具eslint&quot;&gt;格式审查工具ESLint&lt;/h2&gt;
+</description>
+        <pubDate>Tue, 06 Mar 2018 00:00:00 +0800</pubDate>
+        <link>xuqianhui.github.io/blog/2018/03/06/JS%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.html</link>
+        <guid isPermaLink="true">xuqianhui.github.io/blog/2018/03/06/JS%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.html</guid>
+        
+        <category>JS</category>
+        
+      </item>
+    
+  </channel>
+</rss>

@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta name="description" content="My blog">
   <meta name="author" content="徐千惠">
-  <meta name="keywords" content="My blog, Talk is cheap, Show me the code, 徐千惠">
-  <title>My blog</title>
-  <link rel="canonical" href="xuqianhui.github.io">
+  <meta name="keywords" content="时间轴, Talk is cheap, 徐千惠">
+  <title>时间轴 - Talk is cheap</title>
+  <link rel="canonical" href="xuqianhui.github.io/page/timing">
   <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
   <link rel="stylesheet" href="/res/css/public.css">
@@ -61,20 +61,31 @@ var _hmt = _hmt || [];
 </div>
 
       <div class="main">
-      
-<div class="pagination">
-  
-  <span class="pagination-item newer"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;上一页</span>
-    
-  
-  <span class="pagination-item older">下一页&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></span>
-  
+      <link rel="stylesheet" href="/res/css/page.css">
+<div>
+
+
+<h1 class="year">2018</h1>
+<div class="timing">
+  <time class="time">03-06</time>
+  <div class="link"><a href="/blog/2018/03/06/JS%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.html">JS常用开发工具</a></div>
+  <div class="point-time "></div>
 </div>
 
-      <footer>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=32977382&auto=1&height=66"></iframe>
-</footer>
-
+</div>
+<br/>
+<script>
+$(function() {
+  var tags_a = $(".point-time");
+  tags_a.each(function(){
+    var x = 5;
+    var y = 0;
+    var rand = parseInt(Math.random() * (x - y + 1) + y);
+    $(this).addClass("point"+rand);
+  });
+});
+</script>
+      
       </div>
     </div>
     <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
