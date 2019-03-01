@@ -26,7 +26,7 @@
 .timing {
 	position:relative;
 	margin-left:70px;
-	font-size:18px;
+	font-size:6px;
 	height:6em;
 }
 .timing:before {
@@ -83,7 +83,7 @@
 	.link {
 		margin-left:6.45em;
 		margin-top:-20px;
-		font-size:12px;
+		font-size:6px;
 	}
 	.link a:hover {
 		padding-left:0;
